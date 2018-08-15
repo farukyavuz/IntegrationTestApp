@@ -16,19 +16,19 @@ android {
     }
 
     signingConfigs {
-        debug {
+        debugConf {
             keyAlias 'debugAliasName'
             keyPassword 'debugAliasPassword'
             storeFile file('./doc/debug-keystore.jks')
             storePassword 'debugKeyPass'
         }
-        test {
+        testConf {
             keyAlias 'testAliasName'
             keyPassword 'testAliasPassword'
             storeFile file('./doc/test-keystore.jks')
             storePassword 'testKeyPass'
         }
-        prod {
+        prodConf {
             keyAlias 'prodAliasName'
             keyPassword 'prodAliasPassword'
             storeFile file('./prod-keystore.jks')
@@ -37,7 +37,20 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debugConf
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        alpha {
+            signingConfig signingConfigs.testConf
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
         release {
+            signingConfig signingConfigs.prodConf
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
