@@ -13,7 +13,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        dimension "App"
     }
+
+    // New flavor dimension comes with gradle 3.0.0-alpha3 : Every single product flavor must be belong to one of these.
+    // See more at : https://developer.android.com/studio/build/build-variants.html#flavor-dimensions
+    flavorDimensions "App"
 
     signingConfigs {
         debugConf {
@@ -37,22 +43,45 @@ android {
     }
 
     buildTypes {
-        debug {
+        buildTypeDebug {
             signingConfig signingConfigs.debugConf
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        alpha {
+        buildTypeAlpha {
             signingConfig signingConfigs.testConf
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        release {
+        buildTypeRelease {
             signingConfig signingConfigs.prodConf
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        Alpha {
+            //applicationId "org.faruk.integrationtestapp.alpha"
+            applicationIdSuffix ".alpha"
+            resValue "string", "app_name", "ITA-Alpha"
+            buildConfigField 'String', 'API_URL', '"https://api.api.com/api/v1/"'
+            buildConfigField 'String', 'API_DATE_FORMAT', '"yyyy-MM-dd\'T\'HH:mm:ss"'
+        }
+        Beta {
+            //applicationId "org.faruk.integrationtestapp.beta"
+            applicationIdSuffix ".beta"
+            resValue "string", "app_name", "ITA-Beta"
+            buildConfigField 'String', 'API_URL', '"https://api.api.com/api/v1/"'
+            buildConfigField 'String', 'API_DATE_FORMAT', '"yyyy-MM-dd\'T\'HH:mm:ss"'
+        }
+        Store {
+            //applicationId "org.faruk.integrationtestapp"
+            resValue "string", "app_name", "ITA-Store"
+            buildConfigField 'String', 'API_URL', '"https://api.api.com/api/v1/"'
+            buildConfigField 'String', 'API_DATE_FORMAT', '"yyyy-MM-dd\'T\'HH:mm:ss"'
         }
     }
 }
