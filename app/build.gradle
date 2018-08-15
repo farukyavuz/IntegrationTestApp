@@ -31,7 +31,7 @@ android {
         prodConf {
             keyAlias 'prodAliasName'
             keyPassword 'prodAliasPassword'
-            storeFile file('./prod-keystore.jks')
+            storeFile file('./doc/prod-keystore.jks')
             storePassword 'prodKeyPass'
         }
     }
