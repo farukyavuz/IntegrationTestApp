@@ -1,0 +1,19 @@
+========================================================================
+Key name : debug-keystore.jks
+
+Key store password : debugKeyPass
+Key alias : debugAliasName
+Key password : debugAliasPassword
+========================================================================
+Key name : test-keystore.jks
+
+Key store password : testKeyPass
+Key alias : testAliasName
+Key password : testAliasPassword
+========================================================================
+Key name : prod-keystore.jks
+
+Key store password : prodKeyPass
+Key alias : prodAliasName
+Key password : prodAliasPassword
+========================================================================
