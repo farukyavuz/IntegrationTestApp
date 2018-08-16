@@ -1,8 +1,24 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 28
@@ -69,17 +85,17 @@ android {
     }
 
     productFlavors {
+        Dibag {
+            //applicationId "org.faruk.integrationtestapp.beta"
+            applicationIdSuffix ".debug"
+            resValue "string", "app_name", "ITA-Debug"
+            buildConfigField 'String', 'API_URL', '"https://api.api.com/api/v1/"'
+            buildConfigField 'String', 'API_DATE_FORMAT', '"yyyy-MM-dd\'T\'HH:mm:ss"'
+        }
         Alpha {
             //applicationId "org.faruk.integrationtestapp.alpha"
             applicationIdSuffix ".alpha"
             resValue "string", "app_name", "ITA-Alpha"
-            buildConfigField 'String', 'API_URL', '"https://api.api.com/api/v1/"'
-            buildConfigField 'String', 'API_DATE_FORMAT', '"yyyy-MM-dd\'T\'HH:mm:ss"'
-        }
-        Beta {
-            //applicationId "org.faruk.integrationtestapp.beta"
-            applicationIdSuffix ".beta"
-            resValue "string", "app_name", "ITA-Beta"
             buildConfigField 'String', 'API_URL', '"https://api.api.com/api/v1/"'
             buildConfigField 'String', 'API_DATE_FORMAT', '"yyyy-MM-dd\'T\'HH:mm:ss"'
         }
@@ -100,4 +116,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
+        transitive = true;
+    }
 }
