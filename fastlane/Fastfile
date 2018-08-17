@@ -26,6 +26,13 @@ platform :android do
 
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
+
+    increment_version_code(
+        gradle_file_path: "app/build.gradle"
+    )
+
+    add_badge(dark: true, grayscale: true)
+
     gradle(
         task: "clean assemble",
         build_type: 'buildTypeAlpha',
