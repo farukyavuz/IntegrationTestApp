@@ -31,7 +31,7 @@ platform :android do
         gradle_file_path: "app/build.gradle"
     )
 
-    add_badge(dark: true, grayscale: true)
+    # add_badge(dark: true, grayscale: true)
 
     gradle(
         task: "clean assemble",
@@ -42,7 +42,10 @@ platform :android do
     crashlytics(
         notes: git_branch,
         api_token: 'f30a0b32e6ac982df866253afd67b9ea644ae43c',
-        build_secret: 'ccde11f7fb5d18037c74848cebac7b0d9b490909140bb4cc888d8d6c620a7057'
+        build_secret: 'ccde11f7fb5d18037c74848cebac7b0d9b490909140bb4cc888d8d6c620a7057',
+        groups:"test-group-one, test-group-two",
+        notifications: true,
+        notes: "Sürüm çıktı ulennnnn.",
         )
   
     # sh "your_script.sh"
